@@ -1,10 +1,15 @@
 import React, { useState } from "react";
+import axios from "axios";
 
-function App() {
+function App(props) {
+  const [ usuario, setUsuario ] = useState('');
+  function handlePesquisa() {
+    axios.get(`https://api.github.com/users/${usuario}/repos`).then(Response => console.log(Response.data));
+  }
   return (
     <>
-      <input placeholder='Usuário' id='usuario' className="usuarioInput" name="usuario" />
-      <button type="button">Pesquisar</button>
+      <input className="usuarioInput" name="usuario" value={usuario} onChange={e => setUsuario(e.target.value)}/>
+      <button type="button" onClick={handlePesquisa}>Pesquisar</button>
     </>
   );
 }
