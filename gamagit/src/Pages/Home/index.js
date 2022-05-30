@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import * as S from './styled';
 
 function App(props) {
   const [ usuario, setUsuario ] = useState('');
@@ -7,10 +8,10 @@ function App(props) {
     axios.get(`https://api.github.com/users/${usuario}/repos`).then(Response => console.log(Response.data));
   }
   return (
-    <>
-      <input className="usuarioInput" name="usuario" value={usuario} onChange={e => setUsuario(e.target.value)}/>
-      <button type="button" onClick={handlePesquisa}>Pesquisar</button>
-    </>
+    <S.Container>
+      <S.Input className="usuarioInput" name="usuario" value={usuario} onChange={e => setUsuario(e.target.value)}/>
+      <S.Button type="button" onClick={handlePesquisa}>Pesquisar</S.Button>
+    </S.Container>
   );
 }
 
